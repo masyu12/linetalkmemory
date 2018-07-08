@@ -48,7 +48,7 @@ else {
     }
 
     // ユーザ情報やメッセージをデータベースに保存
-    $pdo = new PDO('mysql:host=ec2-184-73-199-189.compute-1.amazonaws.com:5432;dbname=dfcg6mcup740f2;charset=utf8','hegovrdrjdmwzc','4154d0ac42b75b14bb7ea145615e6f272fbf2cdedd80752d2c40f2ee1e04adf7',
+    $pdo = new PDO('mysql:host=ec2-184-73-199-189.compute-1.amazonaws.com;dbname=dfcg6mcup740f2;charset=utf8','hegovrdrjdmwzc','4154d0ac42b75b14bb7ea145615e6f272fbf2cdedd80752d2c40f2ee1e04adf7',
     array(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC));
     $stmt = $pdo -> prepare("INSERT INTO talks (id, type, group_id, user_id, user_display_name, user_picture_url, user_status_message, talk_type, upload_image_name, time, reply_token, message_id, message_type, message_text, created_at) VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)");
     $stmt->execute(array($event->type, $event->source->groupId, $event->source->userId, $user_display_name, $user_picture_url, $user_status_message, $event->source->type, @$fileUrl, $event->timestamp, $event->replyToken, $event->message->id, $event->message->type, $event->message->text));
